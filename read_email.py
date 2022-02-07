@@ -43,7 +43,7 @@ class PGConnection(object):
 def read_email_from_gmail():
     try:
         with PGConnection() as conn:
-            conn.cursor.execute('CREATE TABLE IF NOT EXISTS verse_payments (timestamp integer, usuario varchar(50), cantidad float)')
+            conn.cursor.execute('CREATE TABLE IF NOT EXISTS verse_payments (timestamp integer PRIMARY KEY, usuario varchar(50), cantidad float)')
             conn.connection.commit()
         mail = imaplib.IMAP4_SSL(SMTP_SERVER)
         mail.login(FROM_EMAIL, FROM_PWD)
