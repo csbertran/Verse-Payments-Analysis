@@ -3,6 +3,8 @@ services:
   read_email:
     container_name: read_email_container
     build: .
+    depends_on:
+      - "db"
   db:
     container_name: pg_container
     image: postgres
