@@ -1,4 +1,4 @@
-version: "3.9"
+version: "3.3"
 services:
   read_email:
     container_name: read_email_container
@@ -17,15 +17,15 @@ services:
       POSTGRES_DB: verse_db
     ports:
       - "5432:5432"
-  pgadmin:
-    container_name: pgadmin4_container
-    image: dpage/pgadmin4
-    restart: always
-    environment:
-      PGADMIN_DEFAULT_EMAIL: admin@admin.com
-      PGADMIN_DEFAULT_PASSWORD: root
-    ports:
-      - "5050:80"
+#  pgadmin:
+#    container_name: pgadmin4_container
+#    image: dpage/pgadmin4
+#    restart: always
+#    environment:
+#      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+#      PGADMIN_DEFAULT_PASSWORD: root
+#    ports:
+#      - "5050:80"
   grafana:
     build:
       context: ./grafana
