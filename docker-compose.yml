@@ -1,0 +1,41 @@
+version: "3.9"
+services:
+  read_email:
+    container_name: read_email_container
+    build: .
+  db:
+    container_name: pg_container
+    image: postgres
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    restart: always
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: verse_db
+    ports:
+      - "5432:5432"
+  pgadmin:
+    container_name: pgadmin4_container
+    image: dpage/pgadmin4
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: root
+    ports:
+      - "5050:80"
+  grafana:
+    build:
+      context: ./grafana
+    container_name: grafana
+    ports:
+      - 9000:3000
+    volumes:
+      - grafana-data:/var/lib/grafana
+
+# Explicitly define the persistent volume for your data storage
+volumes:
+  grafana-data:
+    external: false
+  postgres-data:
+    external: false
